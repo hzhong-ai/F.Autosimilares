@@ -1,6 +1,6 @@
 #include "../turtlec.h"
-void koch(Turtle* t, float length, int level);
-void snowflake(Turtle* t, float length);
+
+void fractalTree ( Turtle * turtle , float length , int depth );
 
 int main(void){
   TurtleApp *app = turtleAppCreate(800, 600, "Test Line");
@@ -22,23 +22,15 @@ int main(void){
   turtleAppDestroy(app);
   return 0;
 }       
-void koch(Turtle* t, float length, int level){
-        if( level == 0){
-             turtleForward(t, length);
-        return ;
-}
-        koch(t, length / 3.0, level-1);
-        turtleLeft(t, 60);
-        koch(t, length/ 3.0, level - 1);
-        turtleRight(t, 120);
-        koch(t, length / 3.0, level -1);
-        turtleLeft(t, 60.0);
-        koch(t, length / 3.0, level - 1);      
- } 
-void snowflake(Turtle* t, float length){
-	koch(t, length, 3);
-       	turtleRight(t,120.0);
-	koch(t, length, 3);
-	turtleRight(t,120.0);
-	koch(t, length,3 );	
+void fractalTree (Turtle* t, float length, int depth){
+	if (depth = 0 || length <5)
+		return ;
+	turtleForward ( turtle , length ) ;
+	turtleLeft ( turtle , 30) ;
+	fractalTree ( turtle , length * 0.7 , depth - 1) ;
+
+	turtleRight ( turtle , 60) ;
+	fractalTree ( turtle , length * 0.7 , depth - 1) ;
+	turtleLeft ( turtle , 30) ;
+	turtleBackward ( turtle , length ) ;
 }
