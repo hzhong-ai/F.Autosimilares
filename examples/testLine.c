@@ -16,21 +16,23 @@ int main(void){
 
   turtleSetColor(t, 255, 100, 0);
   turtleSetSpeed(t, 5.0f);
-//  turtleForward(t, 300.0f);
-  snowflake(t,300);
+  fractalTree(t, 300, 2);
   turtleAppRun(app);
   turtleAppDestroy(app);
   return 0;
 }       
-void fractalTree (Turtle* t, float length, int depth){
-	if (depth = 0 || length <5)
+void fractalTree (Turtle* turtle, float length, int depth){
+	if (depth == 0 || length <5)
 		return ;
 	turtleForward ( turtle , length ) ;
 	turtleLeft ( turtle , 30) ;
 	fractalTree ( turtle , length * 0.7 , depth - 1) ;
 
-	turtleRight ( turtle , 60) ;
+	turtleRight ( turtle , 30) ;
 	fractalTree ( turtle , length * 0.7 , depth - 1) ;
+    turtleRight(turtle, 30);
+    fractalTree (turtle, length * 0.7, depth -1);
 	turtleLeft ( turtle , 30) ;
+
 	turtleBackward ( turtle , length ) ;
 }
