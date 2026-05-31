@@ -11,7 +11,7 @@ int main(void) {
     Turtle *t = turtleAppGetTurtle(app);
 
     turtlePenUp(t);
-    turtleGoTo(t, 200.0f, 550.0f);
+    turtleGoTo(t, 500.0f, 550.0f);
     turtlePenDown(t);
 
     turtleSetColor(t, 255, 100, 0);
