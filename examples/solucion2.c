@@ -17,7 +17,7 @@ int main(void) {
     turtleSetColor(t, 255, 100, 0);
     turtleSetSpeed(t, 5.0f);
 
-    fractalTree(t, 150.0f, 8);
+    fractalTree(t, 150.0f, 3);
 
     turtleAppRun(app);
     turtleAppDestroy(app);
