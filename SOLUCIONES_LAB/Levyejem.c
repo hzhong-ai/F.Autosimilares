@@ -12,7 +12,7 @@ int main(void) {
     Turtle *t = turtleAppGetTurtle(app);
 
     turtlePenUp(t);
-    turtleGoTo(t, 50.0f, 300.0f);   // centro izquierdo (50 pix avanzados)
+    turtleGoTo(t, 400.0f, 300.0f);  //Posicion inicial centro
     turtlePenDown(t);
 
     turtleSetColor(t, 255, 0, 255);   // magenta
