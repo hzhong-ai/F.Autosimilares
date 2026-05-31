@@ -99,17 +99,104 @@ Ejecución:
 ./solucion2
 ```
 
+# Ejemplo: Árbol Fractal con Colores Dinámicos
+
+A continuación, se muestra un ejemplo de cómo implementar un árbol fractal clásico y cómo mejorar su apariencia cambiando el color de las ramas en función de la profundidad de la recursión.
+
+## Código Base
+
+```c
+#include "../turtlec.h"
+
+void fractalTree(Turtle *turtle, float length, int depth);
+
+int main(void) {
+    TurtleApp *app = turtleAppCreate(800, 600, "Fractal Tree");
+
+    if (app == NULL)
+        return 1;
+
+    Turtle *t = turtleAppGetTurtle(app);
+
+    turtlePenUp(t);
+    turtleGoTo(t, 0.0f, 300.0f);  // Posición inicial: centro izquierdo
+    turtlePenDown(t);
+
+    turtleSetColor(t, 255, 0, 0); // Rojo inicial
+    turtleSetSpeed(t, 5.0f);
+
+    fractalTree(t, 250.0f, 4);
+
+    turtleAppRun(app);
+    turtleAppDestroy(app);
+
+    return 0;
+}
+
+void fractalTree(Turtle *turtle, float length, int depth) {
+    if (depth == 0 || length < 5)
+        return;
+
+    // Aquí se puede insertar la lógica de colores (ver abajo)
+
+    turtleForward(turtle, length);
+
+    turtleLeft(turtle, 30);
+    fractalTree(turtle, length * 0.7f, depth - 1);
+
+    turtleRight(turtle, 60);
+    fractalTree(turtle, length * 0.7f, depth - 1);
+
+    turtleLeft(turtle, 30);
+    turtleBackward(turtle, length);
+}
+```
+
+## Implementación de Colores según Profundidad
+
+Para darle un aspecto más realista al árbol 🌳, puedes agregar la siguiente condición dentro de la función `fractalTree` antes de que la tortuga avance. Esto cambiará el color del trazo dependiendo del nivel de recursión (`depth`):
+
+```c
+if (depth > 5)
+    turtleSetColor(turtle, 120, 70, 20);
+else
+    turtleSetColor(turtle, 0, 200, 0);
+```
+
+**¿A qué colores cambia?**
+
+- `120, 70, 20`: **Marrón oscuro** 🟫. Las ramas cercanas a la raíz (profundidad grande) se dibujan de este color, simulando el tronco.
+- `0, 200, 0`: **Verde brillante** 🟩. Las ramas pequeñas y externas (profundidad baja) toman este color, simulando el follaje.
+
+**Paletas Alternativas Recomendadas:**
+
+Si prefieres colores más intensos, puedes probar estas combinaciones que suelen verse muy bien en los fractales:
+
+- **Estilo Bosque:**
+  ```c
+  if (depth > 5)
+      turtleSetColor(turtle, 139, 69, 19);   // Marrón madera
+  else
+      turtleSetColor(turtle, 34, 139, 34);   // Verde bosque
+  ```
+- **Estilo Claro:**
+  ```c
+  if (depth > 5)
+      turtleSetColor(turtle, 101, 67, 33);   // Marrón oscuro
+  else
+      turtleSetColor(turtle, 50, 205, 50);   // Verde lima
+  ```
+
 # Conceptos Aplicados
 
 Durante el desarrollo de estas soluciones se utilizaron los siguientes conceptos:
 
-- Recursión.
-- Casos base.
+- Recursión y casos base.
 - Árboles de recursión.
-- Figuras autosimilares.
+- Figuras autosimilares y fractales.
 - Manejo de punteros en C.
 - Programación gráfica con TurtleC.
-- Control de posición y orientación mediante gráficos de tortuga.
+- Control de posición, orientación y color mediante gráficos de tortuga.
 
 # Autor
 
